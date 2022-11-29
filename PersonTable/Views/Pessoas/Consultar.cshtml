@@ -1,0 +1,38 @@
+﻿@model PersonTable.Models.Pessoas
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pessoas - Consultar</title>
+</head>
+<body>
+    <h1>Pessoas - Consultar</h1>
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            <label><b>Nome:</b></label>
+            <div class="col-md-10">
+                <span>@Model.Nome</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><b>Endereço:</b></label>
+            <div class="checkbox">
+                <span>@Model.Endereço</span>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div>
+        <a asp-controller="Pessoas" asp-action="Index">Voltar</a>
+    </div>
+
+</body>
+</html>
