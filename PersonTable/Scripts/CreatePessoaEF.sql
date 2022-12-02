@@ -1,0 +1,7 @@
+﻿use PersonTable
+
+CREATE TABLE PESSOASEF (
+  IDTIPO     int identity(1,1)  PRIMARY KEY,
+  NOME       VARCHAR(50)   NOT NULL,
+  ENDEREÇO   VARCHAR(50)  NOT NULL,
+);

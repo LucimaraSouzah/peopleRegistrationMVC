@@ -4,18 +4,18 @@ using PersonTable.Repository;
 
 namespace PersonTable.Controllers
 {
-    public class PessoasController : Controller
+    public class PessoasEFController : Controller
     {
-        private readonly PessoasRepository pessoasRepository;
-        public PessoasController()
+        private readonly PessoasEFRepository pessoasEFRepository;
+        public PessoasEFController()
         {
-            pessoasRepository = new PessoasRepository();
+            pessoasEFRepository = new PessoasEFRepository();
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var listaPessoas = pessoasRepository.Listar();
+            var listaPessoas = pessoasEFRepository.Listar();
 
             return View(listaPessoas);
         }
@@ -23,47 +23,47 @@ namespace PersonTable.Controllers
         [HttpGet]
         public ActionResult Cadastrar()
         {
-            return View(new Pessoas());
+            return View(new PessoasEF());
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Models.Pessoas pessoas)
+        public ActionResult Cadastrar(Models.PessoasEF pessoasEF)
         {
 
             if (ModelState.IsValid)
             {
-                pessoasRepository.Inserir(pessoas);
+                pessoasEFRepository.Inserir(pessoasEF);
 
                 @TempData["mensagem"] = "Cadastro realizado com sucesso!";
-                return RedirectToAction("Index", "Pessoas");
+                return RedirectToAction("Index", "PessoasEF");
             }
             else
             {
-                return View(pessoas);
+                return View(pessoasEF);
             }
         }
 
         [HttpGet]
         public ActionResult Editar(int Id)
         {
-            var pessoas = pessoasRepository.Consultar(Id);
+            var pessoasEF = pessoasEFRepository.Consultar(Id);
 
-            return View(pessoas);
+            return View(pessoasEF);
         }
 
         [HttpPost]
-        public ActionResult Editar(Models.Pessoas pessoas)
+        public ActionResult Editar(Models.PessoasEF pessoasEF)
         {
             if (ModelState.IsValid)
             {
-                pessoasRepository.Alterar(pessoas);
+                pessoasEFRepository.Alterar(pessoasEF);
 
                 @TempData["mensagem"] = "Cadastro alterado com sucesso!";
-                return RedirectToAction("Index", "Pessoas");
+                return RedirectToAction("Index", "PessoasEF");
             }
             else
             {
-                return View(pessoas);
+                return View(pessoasEF);
             }
 
         }
@@ -71,18 +71,18 @@ namespace PersonTable.Controllers
         [HttpGet]
         public ActionResult Consultar(int Id)
         {
-            var pessoas = pessoasRepository.Consultar(Id);
-            return View(pessoas);
+            var pessoasEF = pessoasEFRepository.Consultar(Id);
+            return View(pessoasEF);
         }
 
         [HttpGet]
         public ActionResult Excluir(int Id)
         {
-            pessoasRepository.Excluir(Id);
+            pessoasEFRepository.Excluir(Id);
 
             @TempData["mensagem"] = "Cadastro excluído com sucesso!";
 
-            return RedirectToAction("Index", "Pessoas");
+            return RedirectToAction("Index", "PessoasEF");
         }
 
     }

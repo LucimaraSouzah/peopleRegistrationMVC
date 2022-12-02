@@ -5,6 +5,7 @@ namespace PersonTable.Repository.Context
 {
     public class DataBaseContext : DbContext
     {
+        public DbSet<PessoasEF> PessoasEF { get; set; }
         public DbSet<Pessoas> Pessoas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
